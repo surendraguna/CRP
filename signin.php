@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +31,7 @@
                 <p>Sign in</p>
             </div>
             <div class="bottom">
-                <form action="" method="">
+                <form action="signin_val.php" method="POST">
                     <div class="input-box">
                         <input type="email" id="email" name="email" required>
                         <span>
@@ -52,9 +56,24 @@
                         </span>
                     </div>  
                     <div class="foot">
+                        <div class="msg">
+                            <?php
+                                // Check if error message is set and display it
+                                if (isset($_SESSION['message']) && $_SESSION['message'] == "error") {
+                                    echo "<p style='color: red; text-align: center; margin: 10px; padding: 0;'>".$_SESSION['error']."</p>";
+                                    unset($_SESSION['message']);
+                                    unset($_SESSION['error']);
+                                }
+                                // else if (isset($_SESSION['message']) && $_SESSION['message'] == "success") {
+                                //     echo "<p style='color: green; text-align: center; margin: 10px; padding: 0;'>".$_SESSION['success']."</p>";
+                                //     unset($_SESSION['message']);
+                                //     unset($_SESSION['success']);
+                                // }
+                            ?>
+                        </div>
                         <div class="btn-top">
                             <a href="signup.php" class="btn-sub">Don't have an account ?</a>
-                            <input type="submit" class="btn-sub" value="Sign up">
+                            <input type="submit" class="btn-sub" value="Sign in">
                         </div>
                     </div>     
                 </form>
