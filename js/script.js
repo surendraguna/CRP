@@ -23,3 +23,5 @@ function togglePasswordVisibility() {
         showPasswordBtn.innerHTML = '<span class="material-symbols-outlined">visibility</span>';
     }
 }
+
+

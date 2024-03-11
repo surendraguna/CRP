@@ -40,6 +40,6 @@ if (!isset($_SESSION['user_session_token']) || $_SESSION['user_session_token'] !
             <td>Resolved</td>
         </tr>
     </table>
-    <a href="logout.php">Logout</a>
+    <a href="signout.php">Logout</a>
 </body>
 </html>
