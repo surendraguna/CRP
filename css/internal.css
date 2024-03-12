@@ -307,3 +307,17 @@ form{
     place-items: center;
 }
 
+select{
+    width: 7vw;
+    height: 5vh;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+    color: #2e2559;
+}
+
+option{
+    background-color: #2e2559;
+    color: #d0ddff;
+}

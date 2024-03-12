@@ -21,18 +21,23 @@ if (!isset($_SESSION['admin_session_token']) || $_SESSION['admin_session_token']
     <script>
         function toggleCurrentPasswordVisibility() {
             var currentPassword = document.getElementById('current');
+            var showPasswordBtn = document.querySelector(".show-password-btn");
             if (currentPassword.type === "password") {
                 currentPassword.type = "text";
+                showPasswordBtn.innerHTML = '<span class="material-symbols-outlined">visibility_off</span>';
             } else {
                 currentPassword.type = "password";
+                showPasswordBtn.innerHTML = '<span class="material-symbols-outlined">visibility</span>';
             }
         }
         function toggleNewPasswordVisibility() {
             var newPassword = document.getElementById('new');
             if (newPassword.type === "password") {
                 newPassword.type = "text";
+                showPasswordBtn.innerHTML = '<span class="material-symbols-outlined">visibility_off</span>';
             } else {
                 newPassword.type = "password";
+                showPasswordBtn.innerHTML = '<span class="material-symbols-outlined">visibility</span>';
             }
         }
     </script>
@@ -124,6 +129,10 @@ if (!isset($_SESSION['admin_session_token']) || $_SESSION['admin_session_token']
                             <input type="text" name="name" id="name" placeholder="Name">
                             <input type="email" name="email" id="email" placeholder="Email">
                             <input type="password" name="password" id="password" placeholder="Password">
+                            <select name="type" id="type">
+                                <option value="user">User</option>
+                                <option value="head">Head</option>
+                            </select>
                         </div>
                         <div class="rgt">
                             <input type="submit" value="Add Member" class="button">
