@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once 'db_connection.php';
 
 // Check if admin session token is set and matches the stored admin session token
 if (!isset($_SESSION['admin_session_token']) || $_SESSION['admin_session_token'] !== $_SESSION['admin_session_token']) {
@@ -124,15 +125,30 @@ if (!isset($_SESSION['admin_session_token']) || $_SESSION['admin_session_token']
                     <h1>Manage Members</h1>
                 </div>
                 <div class="ad">
-                    <form action="" class="add">
+                    <form action="add_member.php" class="add" method="post">
                         <div class="lft">
-                            <input type="text" name="name" id="name" placeholder="Name">
-                            <input type="email" name="email" id="email" placeholder="Email">
-                            <input type="password" name="password" id="password" placeholder="Password">
-                            <select name="type" id="type">
+                            <input type="text" name="name" id="name" placeholder="Name" required>
+                            <input type="email" name="email" id="email" placeholder="Email" required>
+                            <input type="password" name="password" id="password" placeholder="Password" required>
+                            <select name="role" id="role" required>
                                 <option value="user">User</option>
                                 <option value="head">Head</option>
                             </select>
+                            <?php
+                            // Check if there's a message stored in the session
+                            if(isset($_SESSION['status']) && isset($_SESSION['message'])) {
+                                // Display the message based on the status
+                                if($_SESSION['status'] == "success") {
+                                    echo "<p style='color: green; margin-bottom: 1rem'>".$_SESSION['message']."</p>";
+                                } elseif($_SESSION['status'] == "error") {
+                                    echo "<p style='color: red;'>".$_SESSION['message']."</p>";
+                                }
+                            
+                                // Unset the session variables to clear the message
+                                unset($_SESSION['status']);
+                                unset($_SESSION['message']);
+                            }
+                            ?>
                         </div>
                         <div class="rgt">
                             <input type="submit" value="Add Member" class="button">
@@ -144,11 +160,61 @@ if (!isset($_SESSION['admin_session_token']) || $_SESSION['admin_session_token']
                         <div class="title">
                             Head Data
                         </div>
+                        <?php
+                        // Fetch data for users with role 'user' from MySQL
+                        $sql = "SELECT * FROM user WHERE role = 'head'";
+                        $result = mysqli_query($conn, $sql);
+
+                        // Check if there are any rows returned
+                        if (mysqli_num_rows($result) > 0) {
+                            // Loop through each row and display the data
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo '
+                                    <link rel="stylesheet" type="text/css" href="./css/internal.css">
+                                    <div class="user-details">
+                                        <div class="name">
+                                            ' . $row['name'] . '
+                                        </div>
+                                        <div class="remove">
+                                            <a class="remove" href="remove_user.php?id=' . $row['id'] . '&role=head">Remove</a><br>
+                                        </div>
+                                    </div>
+                                ';
+                            }
+                        } else {
+                            echo '<div class="no-data">No user data available</div>';
+                        }
+                        ?>
                     </div>
                     <div class="user">
                         <div class="title">
                             Users Data
                         </div>
+                        <?php
+                        // Fetch data for users with role 'user' from MySQL
+                        $sql = "SELECT * FROM user WHERE role = 'user'";
+                        $result = mysqli_query($conn, $sql);
+
+                        // Check if there are any rows returned
+                        if (mysqli_num_rows($result) > 0) {
+                            // Loop through each row and display the data
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo '
+                                    <link rel="stylesheet" type="text/css" href="./css/internal.css">
+                                    <div class="user-details">
+                                        <div class="name">
+                                            ' . $row['name'] . '
+                                        </div>
+                                        <div class="remove">
+                                            <a class="remove" href="remove_user.php?id=' . $row['id'] . '&role=user">Remove</a><br>
+                                        </div>
+                                    </div>
+                                ';
+                            }
+                        } else {
+                            echo '<div class="no-data">No user data available</div>';
+                        }
+                        ?>
                     </div>
                 </div>
                 <a href="#account" class="btn"><img src="./images/next-arrow.png" alt=""></a>

@@ -79,9 +79,10 @@ a{
     width: 80vw;
     background-color: #d0ddff;
     margin: 0;
-    margin-left: 20vw;
     padding: 0;
+    margin-left: 20vw;
 }
+
 
 .logo{
     width: 10vw;
@@ -320,4 +321,42 @@ select{
 option{
     background-color: #2e2559;
     color: #d0ddff;
+}
+
+.user-details{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 0.5rem 0;
+}
+
+.name{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 0.5rem;
+    color: black;
+    width: 10rem;
+    height: 2rem;  
+    font-size: large;
+}
+
+.remove{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: #2e2559;
+    border: none;
+    border-radius: 0.5rem;
+    width: 5rem;
+    height: 2rem;
+}
+
+.remove:hover{
+    background-color: white;
+    color: black;
+    transition: 0.3s ease-in-out;
 }
