@@ -9,11 +9,16 @@ $statusMessage = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $password = "demo123";
     $role = $_POST['role'];
+    $photo = './default.png'; // Adjust the path as necessary
 
-    // Prepare and execute SQL statement to insert data into the database
-    $sql = "INSERT INTO user (name, email, password, role) VALUES ('$name', '$email', '$password', '$role')";
+    $defaultImage = './images/default.png'; // Adjust the path as necessary
+
+    $imageContent = file_get_contents($defaultImage);
+    $imageContent = base64_encode($imageContent); 
+
+    $sql = "INSERT INTO user (name, email, password, role, photo) VALUES ('$name', '$email', '$password', '$role', '$imageContent')";
     
     if (mysqli_query($conn, $sql)) {
         // If the query was successful, set the status message accordingly
@@ -25,8 +30,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['message'] = "Email already exists. Please use a different email address.";
     }
 
+    echo $imageContent;
+
+    echo '<img src= "data:image/jpeg;base64,' . $imageContent . '" alt="Profile Picture" />';
+
     // Redirect to another page
-    header("Location: admin.php#manage");
-    exit();
+    //header("Location: admin.php#manage");
+    //exit();
 }
 ?>

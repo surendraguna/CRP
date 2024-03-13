@@ -85,11 +85,18 @@ a{
 
 
 .logo{
-    width: 10vw;
+    width: 50%;
     height: 20vh;
     background-color: #d0ddff;
     margin: 1rem 0rem;
-    border-radius: 1rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.logo img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .material-symbols-outlined {
@@ -360,3 +367,4 @@ option{
     color: black;
     transition: 0.3s ease-in-out;
 }
+

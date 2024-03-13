@@ -4,11 +4,19 @@ session_start();
 // Check if user session token is set and matches the stored user session token
 if (!isset($_SESSION['user_session_token']) || $_SESSION['user_session_token'] !== $_SESSION['user_session_token']) {
     // Redirect to login page if session token is missing or doesn't match
-    header("Location: signin.php");
+    header("Location: signup.php");
     exit();
 }
 
-// Your user dashboard page content here...
+require_once 'db_connection.php';
+
+$id = $_SESSION['user_id'];
+//find name of id
+$sql = "SELECT * FROM user WHERE id = '$id'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$name = $row['name'];
+
 ?>
 
 
@@ -17,29 +25,79 @@ if (!isset($_SESSION['user_session_token']) || $_SESSION['user_session_token'] !
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complaint Reporting Portal - USER</title>
-    <link rel="stylesheet" href="inernal.css">
+    <title>User</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="./css/user.css">
+
 </head>
 <body>
-    <h1>Welcome User</h1>
-    <p>Here are the list of complaints</p>
-    <table>
-        <tr>
-            <th>Complaint ID</th>
-            <th>Complaint</th>
-            <th>Status</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Complaint 1</td>
-            <td>Pending</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Complaint 2</td>
-            <td>Resolved</td>
-        </tr>
-    </table>
-    <a href="signout.php">Logout</a>
+    <div class="body">
+        <div class="body-left">
+            <div class="leftDiv">
+                <div class="lft-title">
+                <?php
+                    echo '
+                        <style>
+                            .name span {
+                                font-size: 1rem;
+                                color: #d0ddff;
+                                margin: 0;
+                            } 
+                            .name {
+                                font-size: 2.5rem;
+                                color: white;
+                                margin: 0;
+                                display: grid;
+                                place-items: center;
+                            }
+                        </style>';
+                        echo '<span class="name">' . ucfirst(strtolower($name)) . '<span>Welcome to CRP</span></span>';
+                ?>
+                </div>
+                <div class="logo">
+                <?php
+                    echo '
+                        <style> 
+                            img{
+                                width: 100%;
+                                height: 100%;
+                                objext-fit: cover;
+                            }
+                        </style>
+                        <img src="data:image/png;base64,' . $row['photo'] . '" alt="Default Image">
+                    ';
+                ?>
+                </div>
+                <div class="details">
+                    <a href=""><span class="material-symbols-outlined">
+                        person
+                        </span>Profile</a>
+                    <a href=""><span class="material-symbols-outlined">
+                        app_registration
+                        </span>Rasie Complaint
+                    </a>
+                    <a href=""><span class="material-symbols-outlined">
+                        database
+                        </span>List of complaint
+                    </a>
+                    <a href="">
+                        <span class="material-symbols-outlined">
+                        settings
+                        </span>
+                        Account
+                    </a>
+                    <a href="signout.php">
+                        <span class="material-symbols-outlined">
+                            logout
+                        </span>
+                        Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="body-right">
+        
+        </div>
+    </div>
 </body>
 </html>
