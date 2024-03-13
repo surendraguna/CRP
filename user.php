@@ -8,6 +8,7 @@ if (!isset($_SESSION['user_session_token']) || $_SESSION['user_session_token'] !
     exit();
 }
 
+
 require_once 'db_connection.php';
 
 $id = $_SESSION['user_id'];
@@ -28,7 +29,6 @@ $name = $row['name'];
     <title>User</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="./css/user.css">
-
 </head>
 <body>
     <div class="body">
@@ -71,7 +71,7 @@ $name = $row['name'];
                 <div class="details">
                     <a href=""><span class="material-symbols-outlined">
                         person
-                        </span>Profile</a>
+                        </span>Personal info</a>
                     <a href=""><span class="material-symbols-outlined">
                         app_registration
                         </span>Rasie Complaint
@@ -96,7 +96,9 @@ $name = $row['name'];
             </div>
         </div>
         <div class="body-right">
-        
+            <div class="body-main">
+                <iframe src="./profile.php" frameborder="0"></iframe>
+            </div>           
         </div>
     </div>
 </body>

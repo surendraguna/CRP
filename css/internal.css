@@ -12,7 +12,7 @@ body{
 
 html{
     scrollbar-width: thin;
-    scrollbar-color: black white;
+    scrollbar-color: #2e2559 #d0ddff;
     scroll-behavior: smooth;
 }
 

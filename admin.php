@@ -9,7 +9,6 @@ if (!isset($_SESSION['admin_session_token']) || $_SESSION['admin_session_token']
     exit();
 }
 
-
 $id = $_SESSION['user_id'];
 //find name of id
 $sql = "SELECT * FROM user WHERE id = '$id'";
@@ -27,6 +26,7 @@ $name = $row['name'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="./css/internal.css">
     <script>
         function toggleCurrentPasswordVisibility() {
             var currentPassword = document.getElementById('current');
@@ -50,14 +50,13 @@ $name = $row['name'];
             }
         }
     </script>
-    <link rel="stylesheet" href="./css/internal.css">
 </head>
 <body>
     <div class="body">
         <div class="left">
             <div class="leftDiv">
                 <div class="lft-title">I'm Admin</div>
-                <div class="logo">
+                <div class="logo" style="border-radius: 50%;">
                 <?php
                 echo '
                     <style> 

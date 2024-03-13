@@ -1,5 +1,21 @@
 <?php
 session_start();
+
+// Check if the user is signed in as a regular user
+if (isset($_SESSION['user_session_token'])) {
+    // Redirect to profile page
+    header("Location: user.php");
+    exit();
+} 
+
+// Check if the user is signed in as an admin
+elseif (isset($_SESSION['admin_session_token'])) {
+    header("Location: admin.php");
+    exit();
+} 
+
+else {
+}
 ?>
 
 <!DOCTYPE html>

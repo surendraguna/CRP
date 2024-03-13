@@ -12,7 +12,7 @@ body{
 
 html{
     scrollbar-width: thin;
-    scrollbar-color: black white;
+    scrollbar-color: #2e2559 #d0ddff;
     scroll-behavior: smooth;
 }
 
@@ -25,6 +25,7 @@ a{
     margin: 0;
     padding: 0;
     display: flex;
+    gap: 0;
 }
 
 .body-left{
@@ -100,4 +101,28 @@ a{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.body-right{
+    width: 80%;
+    background-color: #d0ddff;
+    margin: 0;
+    padding: 0;
+    margin-left: 20%;
+    gap: 0;
+}
+
+.body-main{
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+iframe{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
 }
