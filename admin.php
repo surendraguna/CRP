@@ -77,45 +77,69 @@ $name = $row['name'];
                 <div class="title">
                     <h1>Dashboard</h1>
                 </div>
+                <h1>Complaints</h1>
                 <div class="top">
+                    <?php
+                        $cou = "SELECT COUNT(*) AS count FROM complaints";
+                        $result = mysqli_query($conn, $cou);
+                        $row = mysqli_fetch_assoc($result);
+                        $reg_count = $row['count'];
+                        $cou_pen = "SELECT COUNT(*) AS count FROM complaints  WHERE status = 'pending'";
+                        $res_pen = mysqli_query($conn, $cou_pen);
+                        $row_pen = mysqli_fetch_assoc($res_pen);
+                        $pen_count = $row_pen['count'];
+                        $cou_slove = "SELECT COUNT(*) AS count FROM complaints WHERE status = 'solved'";
+                        $res_slove = mysqli_query($conn, $cou_slove);
+                        $row_slove = mysqli_fetch_assoc($res_slove);
+                        $slove_count = $row_slove['count'];
+                    ?>
                     <div class="box">
-                        <span class="material-symbols-outlined">
-                            how_to_reg
-                        </span>
-                        <p>Registered</p>
+                        <span class="material-symbols-outlined">how_to_reg</span>
+                        <p>Registered: <?php echo $reg_count; ?></p>
                     </div>
                     <div class="box">
-                        <span class="material-symbols-outlined">
-                            pending
-                        </span>
-                        <p>Pending</p>
+                        <span class="material-symbols-outlined">pending</span>
+                        <p>Pending: <?php echo $pen_count; ?></p>
                     </div>
                     <div class="box">
-                        <span class="material-symbols-outlined">
-                            verified
-                        </span>
-                        <p>Sloved</p>
+                        <span class="material-symbols-outlined">verified</span>
+                        <p>Solved: <?php echo $slove_count; ?></p>
                     </div>
                 </div>
+                <h1>Users</h1>
                 <div class="top">
+                    <?php
+                        $count = "SELECT COUNT(*) FROM user";
+                        $result_count = mysqli_query($conn, $count);
+                        $row_count = mysqli_fetch_assoc($result_count);
+                        $mem_count = $row_count['COUNT(*)'];
+
+                        $cou_user = "SELECT COUNT(*) AS count FROM user WHERE role = 'user'";
+                        $res_user = mysqli_query($conn, $cou_user);
+                        $row_user = mysqli_fetch_assoc($res_user);
+                        $user_count = $row_user['count'];
+
+                        $cou_head = "SELECT COUNT(*) AS count FROM user WHERE role = 'head'";
+                        $res_head = mysqli_query($conn, $cou_head);
+                        $row_head = mysqli_fetch_assoc($res_head);
+                        $head_count = $row_head['count'];
+                    ?>
+
                     <div class="box">
-                        <span class="material-symbols-outlined">
-                            groups
-                        </span>
-                        <p>Total Members</p>
+                        <span class="material-symbols-outlined">groups</span>
+                        <p>Total Members: <?php echo $mem_count; ?></p>
                     </div>
+
                     <div class="box">
-                        <span class="material-symbols-outlined">
-                            shield_person
-                        </span>
-                        <p>Head</p>
+                        <span class="material-symbols-outlined">shield_person</span>
+                        <p>Head: <?php echo $head_count; ?></p>
                     </div>
+
                     <div class="box">
-                        <span class="material-symbols-outlined">
-                            person
-                        </span>
-                        <p>User</p>
+                        <span class="material-symbols-outlined">person</span>
+                        <p>User: <?php echo $user_count; ?></p>
                     </div>
+
                 </div>
             </section>
             <div class="body-right">

@@ -74,7 +74,7 @@ $name = $row['name'];
                         ?>
                     </div>
                     <div class="rgt">
-                        <input type="submit" value="Add Member" class="button">
+                        <input type="submit" value="Add Member" class="button" style="width: 25vw; height: 6vh;">
                     </div>
                 </form>
             </div>
