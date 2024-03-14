@@ -1,17 +1,13 @@
 <?php
 session_start();
+require_once 'db_connection.php';
 
-// Check if user session token is set and matches the stored user session token
-if (!isset($_SESSION['user_session_token']) || $_SESSION['user_session_token'] !== $_SESSION['user_session_token']) {
-    // Redirect to login page if session token is missing or doesn't match
-    header("Location: signup.php");
+if (!isset($_SESSION['user_id'])) {
+    header("Location: signout.php");
     exit();
 }
 
-require_once 'db_connection.php';
-
 $id = $_SESSION['user_id'];
-//find name of id
 $sql = "SELECT * FROM user WHERE id = '$id'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
@@ -32,11 +28,10 @@ $name = $row['name'];
     <div class="body">
         <div class="pro">
             <div class="pro-inf">
-                <p>Profile picture</p>
-                <!--    <a href="">click here to change picture</a> -->
-                <form action="changeImg.php" method="post" enctype="multipart/form-data" target="_top">
+                <p>Change Profile picture</p>
+                <form action="changeImg.php" method="post" enctype="multipart/form-data">
                     <input type="file" name="upload" id="upload">
-                    <input type="submit" value="Upload" name="submit">
+                    <input class="btn" type="submit" value="Upload" name="submit">
                 </form>
                 <div class="logo">
                     <?php
@@ -56,16 +51,19 @@ $name = $row['name'];
                 </div>
             </div>
             <div class="pro-inf">
-                <p>Name </p>
-                <p><?php echo $row['name']; ?></p>
-                <!-- <a href="">Change Name</a> -->
-            </div>
-            <div class="pro-inf">
-                <p>Email </p>
-                <p><?php echo $row['email']; ?></p>
-                <!-- <a href="">Change Email</a> -->
+                <table>
+                    <tr>
+                        <td>Name</td>
+                        <td><?php echo $name; ?></td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td><?php echo $row['email']; ?></td>
+                    </tr>
+                </table>
             </div>
         </div>
+        
     </div>
 </body>
 </html>

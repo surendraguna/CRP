@@ -2,10 +2,11 @@
 session_start();
 require_once 'db_connection.php';
 
-// Define a variable to hold the status message
-$statusMessage = "";
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+    header("Location: signout.php");
+    exit();
+}
 
-// Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -18,24 +19,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $imageContent = file_get_contents($defaultImage);
     $imageContent = base64_encode($imageContent); 
 
-    $sql = "INSERT INTO user (name, email, password, role, photo) VALUES ('$name', '$email', '$password', '$role', '$imageContent')";
+    // Check if email already exists
+    $check_query = "SELECT * FROM user WHERE email = '$email'";
+    $check_result = mysqli_query($conn, $check_query);
     
-    if (mysqli_query($conn, $sql)) {
-        // If the query was successful, set the status message accordingly
-        $_SESSION['status'] = "success";
-        $_SESSION['message'] = "{$role} added successfully.";
-    } else {
-        // If the query failed, set the status message accordingly
+    if (mysqli_num_rows($check_result) > 0) {
+        // If email exists, set error message and redirect back
         $_SESSION['status'] = "error";
         $_SESSION['message'] = "Email already exists. Please use a different email address.";
+        header("Location: manage.php");
+        exit();
+    } else {
+        // If email does not exist, proceed with insertion
+        $sql = "INSERT INTO user (name, email, password, role, photo) VALUES ('$name', '$email', '$password', '$role', '$imageContent')";
+        
+        if (mysqli_query($conn, $sql)) {
+            // If the query was successful, set the status message accordingly
+            $_SESSION['status'] = "success";
+            $_SESSION['message'] = "{$role} added successfully.";
+        } else {
+            // If the query failed for some other reason, set error message
+            $_SESSION['status'] = "error";
+            $_SESSION['message'] = "An error occurred. Please try again.";
+        }
+        header("Location: manage.php");
+        exit();
     }
-
-    echo $imageContent;
-
-    echo '<img src= "data:image/jpeg;base64,' . $imageContent . '" alt="Profile Picture" />';
-
-    // Redirect to another page
-    //header("Location: admin.php#manage");
-    //exit();
 }
 ?>

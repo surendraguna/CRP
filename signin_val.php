@@ -11,17 +11,22 @@ if(mysqli_num_rows($getaUser) == 1){
     echo $user['password'];
     if($password == $user['password']){
         $_SESSION['user_id'] = $user['id'];
-        $_SESSION['email'] = $user['email'];
+        $_SESSION['role'] = $user['role'];
         
         if ($user['role'] == 'admin') {
             $_SESSION['admin_session_token'] = bin2hex(random_bytes(32)); // Generates a random 32-byte session token for admin 
             // Redirect to admin dashboard after successful login
             header("Location: admin.php");
             exit();
-        } else {
+        } else if ($user['role'] == 'user'){
             $_SESSION['user_session_token'] = bin2hex(random_bytes(32)); // Generates a random 32-byte session token for user
             // Redirect to user dashboard after successful login
             header("Location: user.php");
+            exit();
+        } else if($user['role'] == 'head'){
+            $_SESSION['head_session_token'] = bin2hex(random_bytes(32)); // Generates a random 32-byte session token for head
+            // Redirect to head dashboard after successful login
+            header("Location: head.php");
             exit();
         }
     } else {

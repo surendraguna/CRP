@@ -2,6 +2,11 @@
 session_start();
 require_once 'db_connection.php';
 
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+    header("Location: signout.php");
+    exit();
+}
+
 // Retrieve user ID and role from URL parameters
 if (isset($_GET['id']) && isset($_GET['role'])) {
     $user_id = $_GET['id'];
@@ -21,7 +26,7 @@ if (isset($_GET['id']) && isset($_GET['role'])) {
 }
 
 // Redirect back to the page where the removal action was initiated
-header("Location: admin.php#manage");
+header("Location: manage.php");
 exit();
 
 

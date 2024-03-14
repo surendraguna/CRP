@@ -1,7 +1,8 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'user') {
+// Check if head session token is set and matches the stored user session token
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'head') {
     header("Location: signout.php");
     exit();
 }
@@ -24,7 +25,7 @@ $name = $row['name'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User</title>
+    <title>Head</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="./css/user.css">
 </head>
@@ -69,15 +70,14 @@ $name = $row['name'];
                 <div class="details">
                     <a href="#profile"><span class="material-symbols-outlined">
                         person
-                        </span>Personal info
-                    </a>
-                    <a href="#complaint"><span class="material-symbols-outlined">
+                        </span>Personal info</a>
+                    <a href=""><span class="material-symbols-outlined">
                         app_registration
                         </span>Rasie Complaint
                     </a>
                     <a href=""><span class="material-symbols-outlined">
                         database
-                        </span>History
+                        </span>List of complaint
                     </a>
                     <a href="#account">
                         <span class="material-symbols-outlined">
@@ -97,13 +97,10 @@ $name = $row['name'];
         <div class="body-right">
             <div class="body-main" id="profile">
                 <iframe src="./profile.php" frameborder="0"></iframe>
-            </div>    
-            <div class="body-main" id="complaint">
-                <iframe src="./register.php" frameborder="0"></iframe>
-            </div>  
+            </div>     
             <div class="body-main" id="account">
                 <iframe src="./account.php" frameborder="0"></iframe>
-            </div>                       
+            </div>       
         </div>
     </div>
 </body>
