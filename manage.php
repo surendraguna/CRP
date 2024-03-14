@@ -51,9 +51,9 @@ $name = $row['name'];
             <div class="ad">
                 <form action="add_member.php" class="add" method="post">
                     <div class="lft">
-                        <input type="text" name="name" id="name" placeholder="Name" required>
-                        <input type="email" name="email" id="email" placeholder="Email" required>
-                        <select name="role" id="role" required>
+                        <input type="text" name="name" id="name" placeholder="Name" required style="cursor: auto">
+                        <input type="email" name="email" id="email" placeholder="Email" required style="cursor: auto">
+                        <select name="role" id="role" required style="cursor: auto">
                             <option value="user">User</option>
                             <option value="head">Head</option>
                         </select>
