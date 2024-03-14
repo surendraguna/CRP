@@ -34,8 +34,15 @@ $email = $row['email'];
             <div class="title">
                 <h1>Register Complaint</h1>
             </div>
+            <?php
+                if (isset($_SESSION['status']) && isset($_SESSION['message'])) {
+                    echo "<div class='" . $_SESSION['status'] . "'>" . $_SESSION['message'] . "</div>";
+                    unset($_SESSION['status']);
+                    unset($_SESSION['message']);
+                }
+            ?>
             <div class="reg">
-                <form action="">
+                <form action="add_complaint.php" method="post">
                     <table>
                         <tr>
                             <td>Name</td>
@@ -48,15 +55,14 @@ $email = $row['email'];
                         <tr>
                             <td>Head</td>
                             <td>
-                                <select name="head" id="head">
-                                    
+                                <select name="head" id="head" required>
                                     <?php
                                     $query = "SELECT id, name FROM user where role = 'head'";
                                     $result = mysqli_query($conn, $query);
 
                                     if ($result) {
-                                        while ($row = mysqli_fetch_assoc($result)) {
-                                            echo "<option value='" . $row['id'] . "'>" . $row['name'] . "</option>";
+                                        while ($head = mysqli_fetch_assoc($result)) {
+                                            echo "<option value='" . $head['id'] . "'>" . $head['name'] . "</option>";
                                         }
                                         mysqli_free_result($result);
                                     } else {
@@ -69,11 +75,11 @@ $email = $row['email'];
                         </tr>
                         <tr>
                             <td>Subject</td>
-                            <td><input type="text" name="subject" id="subject"></td>
+                            <td><input type="text" name="subject" id="subject" required></td>
                         </tr>
                         <tr>
                             <td>Description</td>
-                            <td><textarea name="complaint" id="complaint" cols="100" rows="10"></textarea></td>
+                            <td><textarea name="description" id="description" cols="100" rows="5" required></textarea></td>
                         </tr>
                     </table>
                     <input type="submit" value="Register">
