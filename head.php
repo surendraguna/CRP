@@ -72,10 +72,6 @@ $name = $row['name'];
                         person
                         </span>Personal info</a>
                     <a href=""><span class="material-symbols-outlined">
-                        app_registration
-                        </span>Rasie Complaint
-                    </a>
-                    <a href=""><span class="material-symbols-outlined">
                         database
                         </span>List of complaint
                     </a>
@@ -98,6 +94,9 @@ $name = $row['name'];
             <div class="body-main" id="profile">
                 <iframe src="./profile.php" frameborder="0"></iframe>
             </div>     
+            <div class="body-main" id="complaints">
+                <iframe src="./list_of_complaints.php" frameborder="0"></iframe>
+            </div>
             <div class="body-main" id="account">
                 <iframe src="./account.php" frameborder="0"></iframe>
             </div>       
