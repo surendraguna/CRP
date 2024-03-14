@@ -1,5 +1,10 @@
 <?php
 session_start();
+if(isset($_SESSION['user_id']) || isset($_SESSION['role']) || isset($_SESSION['admin_session_token']) || isset($_SESSION['user_session_token']) || isset($_SESSION['head_session_token'])) {
+    session_destroy();
+    header("Location: signout.php");
+    exit();
+}
 require_once 'db_connection.php';
 $email = $_POST['email'];
 $password = $_POST['password'];
