@@ -14,8 +14,14 @@ if(mysqli_num_rows($getaUser) == 1){
     header("Location: signup.php");
     exit();
 } else {
+    $photo = './default.png'; // Adjust the path as necessary
+
+    $defaultImage = './images/default.png'; // Adjust the path as necessary
+
+    $imageContent = file_get_contents($defaultImage);
+    $imageContent = base64_encode($imageContent); 
     //$encPass = password_hash($password, PASSWORD_BCRYPT);
-    $insert = "INSERT INTO user (name, email, password) values ('$name', '$email', '$password')";
+    $insert = "INSERT INTO user (name, email, password, photo) values ('$name', '$email', '$password', '$imageContent)";
     mysqli_query($conn, $insert);
     
     $_SESSION['message'] = "success";
