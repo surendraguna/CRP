@@ -67,11 +67,11 @@ $email = $row['email'];
                 <div class="view">
                    <table>
                         <tr>
-                            <th style="width: 12%;">Date</th>
-                            <th style="width: 10%;">Status</th>
-                            <th style="width: 10%;">Head</th>
-                            <th style="width: 15%;">Subject</th>
-                            <th style="width: 50%;">Description</th>
+                            <th style="width: 100%;">Date</th>
+                            <th style="width: 100%;">Status</th>
+                            <th style="width: 100%;">Head</th>
+                            <th style="width: 100%;">Subject</th>
+                            <th style="width: 100%;">Description</th>
                         </tr>
                         <?php
                             $sql = "SELECT * FROM complaints WHERE user_id = '$id'";

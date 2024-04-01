@@ -27,11 +27,12 @@ else {
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
     <script src="./js/script.js"></script>
+    <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon">
 </head>
 <body>
     <header>
         <div class="logo">
-            <img src="./images/logo1.jpg" alt="">
+            <img src="./images/logo1.png" alt="">
         </div>
         <marquee behavior="scroll" direction="right" scrollamount="20">
             <div class="text">
@@ -43,7 +44,7 @@ else {
     <div class="outer">
         <div class="inner">
             <div class="top">
-                <img src="./images/logo.jpg" alt="">
+                <img src="./images/logo.png" alt="">
                 <p>Sign in</p>
             </div>
             <div class="bottom">

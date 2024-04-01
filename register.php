@@ -82,7 +82,7 @@ $email = $row['email'];
                             <td><textarea name="description" id="description" cols="100" rows="5" required></textarea></td>
                         </tr>
                     </table>
-                    <input type="submit" value="Register">
+                    <input type="submit" value="Submit">
                 </form>
             </div>
         </div>

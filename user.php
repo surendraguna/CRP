@@ -27,6 +27,7 @@ $name = $row['name'];
     <title>User</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="./css/user.css">
+    <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon">
 </head>
 <body>
     <div class="body">
