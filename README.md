@@ -9,7 +9,7 @@ The Safe Society Platform offers a range of features to facilitate community eng
 
 - **Login and Registration:** Users can securely log in to the platform and register for an account, enabling access to personalized features and services.
 - **Complaint Registration:** Individuals can register complaints regarding safety-related incidents, such as crimes, accidents, hazards, and suspicious activities, through a user-friendly interface.
-- **Assignment to Corresponding Head:** Administrators have the ability to assign registered complaints to the corresponding head or authority for resolution and follow-up.
+- **Assignment to Chosen Head:** Users have the ability to choose the specific head or authority to whom they want to assign their registered complaints for resolution and follow-up.
 - **Status Tracking:** Users can track the status of their registered complaints in real-time, providing transparency and accountability throughout the resolution process.
 
 
