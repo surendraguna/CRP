@@ -13,7 +13,6 @@ $select = "SELECT * FROM user where email='$email'";
 $getaUser = mysqli_query($conn, $select);
 if(mysqli_num_rows($getaUser) == 1){
     $user = mysqli_fetch_assoc($getaUser);
-    echo $user['password'];
     if($password == $user['password']){
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['role'] = $user['role'];

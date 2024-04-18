@@ -16,7 +16,8 @@ if(mysqli_num_rows($getaUser) == 1){
 } else {
     $photo = './default.png'; // Adjust the path as necessary
 
-    $defaultImage = './images/default.png'; // Adjust the path as necessary
+    $defaultImage = './imag+
+    +es/default.png'; // Adjust the path as necessary
 
     $imageContent = file_get_contents($defaultImage);
     $imageContent = base64_encode($imageContent); 
